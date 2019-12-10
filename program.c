@@ -43,6 +43,18 @@ void odstranKoniecRiadka(char retazec[]) {
 	size_t dlzka = strlen(retazec);
 	if (dlzka > 0 && retazec[dlzka - 1] == '\n') {
 		retazec[dlzka - 1] = '\0';}}
+void pridajPonuku(SpajanyZoznam *ponuky, Ponuka ponuka) {
+	if (!ponuky) {
+		return;}
+	Uzol *novy = malloc(sizeof(Uzol));
+	novy->ponuka = ponuka;
+	novy->dalsi = NULL;
+	if (ponuky->zaciatok) {
+		Uzol *posledny = ponuky->zaciatok;
+		while (posledny->dalsi) {
+			posledny = posledny->dalsi;}
+		posledny->dalsi = novy;}
+	else {ponuky->zaciatok = novy;}}
 int main(void) {
 	SpajanyZoznam ponuky;
 	inicializujZoznam(&ponuky);
