@@ -7,6 +7,15 @@
 #define ULICA_DLZKA 102
 #define POPIS_DLZKA 202
 
+typedef struct {
+	char kategoria[KATEGORIA_DLZKA];
+	char miesto[MIESTO_DLZKA];
+	char ulica[ULICA_DLZKA];
+	int rozloha;
+	int cena;
+	char popis[POPIS_DLZKA];
+} Ponuka;
+
 int main(void) {
 	SpajanyZoznam ponuky;
 	inicializujZoznam(&ponuky);
