@@ -16,6 +16,11 @@ typedef struct {
 	char popis[POPIS_DLZKA];
 } Ponuka;
 
+typedef struct UzolStruct {
+	Ponuka ponuka;
+	struct UzolStruct *dalsi;
+} Uzol;
+
 int main(void) {
 	SpajanyZoznam ponuky;
 	inicializujZoznam(&ponuky);
