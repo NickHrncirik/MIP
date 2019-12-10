@@ -29,6 +29,16 @@ void inicializujZoznam(SpajanyZoznam *zoznam) {
 	if (!zoznam) {
 		return;	}
 	zoznam->zaciatok = NULL;}
+
+void uvolniZoznam(SpajanyZoznam *zoznam) {
+	if (!zoznam) {
+		return;}
+	Uzol *uzol = zoznam->zaciatok;
+	while (uzol) {
+		Uzol *dalsi = uzol->dalsi;
+		free(uzol);
+		uzol = dalsi;	}
+	zoznam->zaciatok = NULL;}
 int main(void) {
 	SpajanyZoznam ponuky;
 	inicializujZoznam(&ponuky);
