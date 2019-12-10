@@ -176,19 +176,19 @@ int main(void) {
 		}
 
 		switch (volba) {
-		case 'n':
+		case 'n':		//príkaz na načítanie záznamov o realitách zo súboru do spájaného zoznamu štruktúr
 			n(&ponuky);
 			break;
 
-		case 'v':
+		case 'v':		//príkaz na výpis celého spájaného zoznamu záznamov
 			v(&ponuky);
 			break;
 
-		case 'h':
+		case 'h':		//umožní používateľovi vyhľadať a vypísať všetky položky záznamu podľa ceny ponuky
 			h(&ponuky);
 			break;
 		
-		case 'k':
+		case 'k':		//príkaz na ukončenie programu
 			break;
 
 		default:
