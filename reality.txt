@@ -1,0 +1,56 @@
+&
+trojizbovy byt
+zaciatok
+Medena 321
+1054
+475000
+byt po ciastocnej rekonstrukcii, samostatne vykurovanie
+&
+stvorizbovy byt
+Bratislava
+Medena 32
+104
+476000
+byt po ciastocnej rekonstrukcii, samostatne vykurovanie
+&
+trojizbovy byt
+Tisovec
+Medena 321
+1054
+475000
+byt po ciastocnej rekonstrukcii, samostatne vykurovanie
+&
+dvojizbovy byt
+stred
+Medena 321
+104
+475000
+byt po ciastocnej rekonstrukcii, samostatne vykurovanie
+&
+rodinny dom 5+1
+Povazska Bystrica
+Jana Amosa Komenskeho 45
+230
+255000
+starsi udrziavany rodinny dom s atelierom na pozemku 970 m2
+&
+celorocne obyvatelna chata
+Stary Smokovec
+Tatranska 340
+158
+178000
+drevena novostavba, potrebne ukoncit rozvody elektriny
+&
+celorocne obyvatelna chata
+Bratislava
+Tatranska 348
+1586
+170000
+drevena novostavba, potrebne ukoncit rozvody elektriny
+&
+jednoizbovy byt
+koniec
+Medena 321
+104
+412000
+byt po ciastocnej rekonstrukcii, samostatne vykurovanie
