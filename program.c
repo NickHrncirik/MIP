@@ -88,6 +88,19 @@ void nacitajPonuky(SpajanyZoznam *ponuky) {
 		printf("Nepodarilo sa zatvorit subor reality.txt\n");
 	}
 }
+void vypisPonuku(Ponuka *ponuka) {
+	printf("kategoria ponuky: %s\n", ponuka->kategoria);
+	printf("miesto ponuky: %s\n", ponuka->miesto);
+	printf("ulica: %s\n", ponuka->ulica);
+	printf("rozloha v m2: %d\n", ponuka->rozloha);
+	printf("cena: %d\n", ponuka->cena);
+	printf("popis: %s\n", ponuka->popis);
+}
+void vypisPonuky(SpajanyZoznam *ponuky) {
+	int poradoveCislo = 1;
+	for (Uzol *uzol = ponuky->zaciatok; uzol; uzol = uzol->dalsi) {
+		printf("%d.\n", poradoveCislo++);
+		vypisPonuku(&uzol->ponuka);}}
 int main(void) {
 	SpajanyZoznam ponuky;
 	inicializujZoznam(&ponuky);
