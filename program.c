@@ -21,6 +21,14 @@ typedef struct UzolStruct {
 	struct UzolStruct *dalsi;
 } Uzol;
 
+typedef struct {
+	Uzol *zaciatok;
+} SpajanyZoznam;
+
+void inicializujZoznam(SpajanyZoznam *zoznam) {
+	if (!zoznam) {
+		return;	}
+	zoznam->zaciatok = NULL;}
 int main(void) {
 	SpajanyZoznam ponuky;
 	inicializujZoznam(&ponuky);
