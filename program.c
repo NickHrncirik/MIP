@@ -39,6 +39,10 @@ void uvolniZoznam(SpajanyZoznam *zoznam) {
 		free(uzol);
 		uzol = dalsi;	}
 	zoznam->zaciatok = NULL;}
+void odstranKoniecRiadka(char retazec[]) {
+	size_t dlzka = strlen(retazec);
+	if (dlzka > 0 && retazec[dlzka - 1] == '\n') {
+		retazec[dlzka - 1] = '\0';}}
 int main(void) {
 	SpajanyZoznam ponuky;
 	inicializujZoznam(&ponuky);
