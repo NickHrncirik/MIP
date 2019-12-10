@@ -55,6 +55,39 @@ void pridajPonuku(SpajanyZoznam *ponuky, Ponuka ponuka) {
 			posledny = posledny->dalsi;}
 		posledny->dalsi = novy;}
 	else {ponuky->zaciatok = novy;}}
+void nacitajPonuky(SpajanyZoznam *ponuky) {
+	FILE *subor;
+	if ((subor = fopen("reality.txt", "r")) == NULL) {
+		printf("Zaznamy neboli nacitane\n");
+		return;
+	}
+
+	if (ponuky->zaciatok) {
+		uvolniZoznam(ponuky);
+	}
+
+	int pocetNacitanych = 0;
+	Ponuka ponuka;
+	char oddelovac[3];
+	while (fgets(oddelovac, 3, subor) != NULL) {
+		fgets(ponuka.kategoria, KATEGORIA_DLZKA, subor);
+		fgets(ponuka.miesto, MIESTO_DLZKA, subor);
+		fgets(ponuka.ulica, ULICA_DLZKA, subor);
+		fscanf(subor, "%d", &ponuka.rozloha);
+		fscanf(subor, "%d", &ponuka.cena);
+		fgetc(subor);
+		fgets(ponuka.popis, POPIS_DLZKA, subor);
+		odstranKonceRiadkov(&ponuka);
+		pridajPonuku(ponuky, ponuka);
+		pocetNacitanych++;
+	}
+
+	printf("Nacitalo sa %d zaznamov\n", pocetNacitanych);
+
+	if (fclose(subor) == EOF) {
+		printf("Nepodarilo sa zatvorit subor reality.txt\n");
+	}
+}
 int main(void) {
 	SpajanyZoznam ponuky;
 	inicializujZoznam(&ponuky);
