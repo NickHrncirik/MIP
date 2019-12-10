@@ -16,45 +16,81 @@ typedef struct {
 	char popis[POPIS_DLZKA];
 } Ponuka;
 
+
 typedef struct UzolStruct {
 	Ponuka ponuka;
 	struct UzolStruct *dalsi;
 } Uzol;
 
+
 typedef struct {
 	Uzol *zaciatok;
 } SpajanyZoznam;
 
+
 void inicializujZoznam(SpajanyZoznam *zoznam) {
 	if (!zoznam) {
-		return;	}
-	zoznam->zaciatok = NULL;}
+		return;
+	}
+
+	zoznam->zaciatok = NULL;
+}
+
 
 void uvolniZoznam(SpajanyZoznam *zoznam) {
 	if (!zoznam) {
-		return;}
+		return;
+	}
+
 	Uzol *uzol = zoznam->zaciatok;
 	while (uzol) {
 		Uzol *dalsi = uzol->dalsi;
 		free(uzol);
-		uzol = dalsi;	}
-	zoznam->zaciatok = NULL;}
+		uzol = dalsi;
+	}
+
+	zoznam->zaciatok = NULL;
+}
+
+
 void odstranKoniecRiadka(char retazec[]) {
 	size_t dlzka = strlen(retazec);
 	if (dlzka > 0 && retazec[dlzka - 1] == '\n') {
-		retazec[dlzka - 1] = '\0';}}
+		retazec[dlzka - 1] = '\0';
+	}
+}
+
+
+void odstranKonceRiadkov(Ponuka *ponuka) {
+	odstranKoniecRiadka(ponuka->kategoria);
+	odstranKoniecRiadka(ponuka->miesto);
+	odstranKoniecRiadka(ponuka->ulica);
+	odstranKoniecRiadka(ponuka->popis);
+}
+
+
 void pridajPonuku(SpajanyZoznam *ponuky, Ponuka ponuka) {
 	if (!ponuky) {
-		return;}
+		return;
+	}
+
 	Uzol *novy = malloc(sizeof(Uzol));
 	novy->ponuka = ponuka;
 	novy->dalsi = NULL;
+
 	if (ponuky->zaciatok) {
 		Uzol *posledny = ponuky->zaciatok;
 		while (posledny->dalsi) {
-			posledny = posledny->dalsi;}
-		posledny->dalsi = novy;}
-	else {ponuky->zaciatok = novy;}}
+			posledny = posledny->dalsi;
+		}
+		posledny->dalsi = novy;
+	}
+	else {
+		ponuky->zaciatok = novy;
+	}
+}
+
+
 void nacitajPonuky(SpajanyZoznam *ponuky) {
 	FILE *subor;
 	if ((subor = fopen("reality.txt", "r")) == NULL) {
@@ -88,6 +124,8 @@ void nacitajPonuky(SpajanyZoznam *ponuky) {
 		printf("Nepodarilo sa zatvorit subor reality.txt\n");
 	}
 }
+
+
 void vypisPonuku(Ponuka *ponuka) {
 	printf("kategoria ponuky: %s\n", ponuka->kategoria);
 	printf("miesto ponuky: %s\n", ponuka->miesto);
@@ -96,11 +134,17 @@ void vypisPonuku(Ponuka *ponuka) {
 	printf("cena: %d\n", ponuka->cena);
 	printf("popis: %s\n", ponuka->popis);
 }
+
+
 void vypisPonuky(SpajanyZoznam *ponuky) {
 	int poradoveCislo = 1;
 	for (Uzol *uzol = ponuky->zaciatok; uzol; uzol = uzol->dalsi) {
 		printf("%d.\n", poradoveCislo++);
-		vypisPonuku(&uzol->ponuka);}}
+		vypisPonuku(&uzol->ponuka);
+	}
+}
+
+
 void najdiVhodnePonuky(SpajanyZoznam *ponuky) {
 	int cenovyLimit;
 	scanf("%d", &cenovyLimit);
@@ -110,9 +154,16 @@ void najdiVhodnePonuky(SpajanyZoznam *ponuky) {
 	for (Uzol *uzol = ponuky->zaciatok; uzol; uzol = uzol->dalsi) {
 		if (uzol->ponuka.cena <= cenovyLimit) {
 			printf("%d.\n", ++pocetVhodnych);
-			vypisPonuku(&uzol->ponuka);}}
+			vypisPonuku(&uzol->ponuka);
+		}
+	}
+
 	if (pocetVhodnych == 0) {
-		printf("V ponuke su len reality s vyssou cenou\n");}}
+		printf("V ponuke su len reality s vyssou cenou\n");
+	}
+}
+
+
 int main(void) {
 	SpajanyZoznam ponuky;
 	inicializujZoznam(&ponuky);
