@@ -91,7 +91,7 @@ void pridajPonuku(SpajanyZoznam *ponuky, Ponuka ponuka) {
 }
 
 
-void nacitajPonuky(SpajanyZoznam *ponuky) {
+void n(SpajanyZoznam *ponuky) {
 	FILE *subor;
 	if ((subor = fopen("reality.txt", "r")) == NULL) {
 		printf("Zaznamy neboli nacitane\n");
@@ -136,7 +136,7 @@ void vypisPonuku(Ponuka *ponuka) {
 }
 
 
-void vypisPonuky(SpajanyZoznam *ponuky) {
+void v(SpajanyZoznam *ponuky) {
 	int poradoveCislo = 1;
 	for (Uzol *uzol = ponuky->zaciatok; uzol; uzol = uzol->dalsi) {
 		printf("%d.\n", poradoveCislo++);
@@ -145,7 +145,7 @@ void vypisPonuky(SpajanyZoznam *ponuky) {
 }
 
 
-void najdiVhodnePonuky(SpajanyZoznam *ponuky) {
+void h(SpajanyZoznam *ponuky) {
 	int cenovyLimit;
 	scanf("%d", &cenovyLimit);
 	getchar();
@@ -177,15 +177,15 @@ int main(void) {
 
 		switch (volba) {
 		case 'n':
-			nacitajPonuky(&ponuky);
+			n(&ponuky);
 			break;
 
 		case 'v':
-			vypisPonuky(&ponuky);
+			v(&ponuky);
 			break;
 
 		case 'h':
-			najdiVhodnePonuky(&ponuky);
+			h(&ponuky);
 			break;
 		
 		case 'k':
