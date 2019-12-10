@@ -101,6 +101,18 @@ void vypisPonuky(SpajanyZoznam *ponuky) {
 	for (Uzol *uzol = ponuky->zaciatok; uzol; uzol = uzol->dalsi) {
 		printf("%d.\n", poradoveCislo++);
 		vypisPonuku(&uzol->ponuka);}}
+void najdiVhodnePonuky(SpajanyZoznam *ponuky) {
+	int cenovyLimit;
+	scanf("%d", &cenovyLimit);
+	getchar();
+
+	int pocetVhodnych = 0;
+	for (Uzol *uzol = ponuky->zaciatok; uzol; uzol = uzol->dalsi) {
+		if (uzol->ponuka.cena <= cenovyLimit) {
+			printf("%d.\n", ++pocetVhodnych);
+			vypisPonuku(&uzol->ponuka);}}
+	if (pocetVhodnych == 0) {
+		printf("V ponuke su len reality s vyssou cenou\n");}}
 int main(void) {
 	SpajanyZoznam ponuky;
 	inicializujZoznam(&ponuky);
