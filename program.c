@@ -16,7 +16,7 @@ typedef struct {
 	char popis[POPIS_DLZKA];
 } Ponuka;
 
-
+// uzol jednosmerne spajaneho zoznamu
 typedef struct UzolStruct {
 	Ponuka ponuka;
 	struct UzolStruct *dalsi;
@@ -27,7 +27,7 @@ typedef struct {
 	Uzol *zaciatok;
 } SpajanyZoznam;
 
-
+// pripravi strukturu pre zoznam
 void inicializujZoznam(SpajanyZoznam *zoznam) {
 	if (!zoznam) {
 		return;
@@ -36,7 +36,7 @@ void inicializujZoznam(SpajanyZoznam *zoznam) {
 	zoznam->zaciatok = NULL;
 }
 
-
+// uvolni zoznam (vsetky uzly)
 void uvolniZoznam(SpajanyZoznam *zoznam) {
 	if (!zoznam) {
 		return;
@@ -52,7 +52,7 @@ void uvolniZoznam(SpajanyZoznam *zoznam) {
 	zoznam->zaciatok = NULL;
 }
 
-
+// odstrani z konca retazca znak noveho riadka
 void odstranKoniecRiadka(char retazec[]) {
 	size_t dlzka = strlen(retazec);
 	if (dlzka > 0 && retazec[dlzka - 1] == '\n') {
@@ -60,7 +60,7 @@ void odstranKoniecRiadka(char retazec[]) {
 	}
 }
 
-
+// odstrani zo vsetkych retazcov struktury ponuka znak noveho riadka z konca
 void odstranKonceRiadkov(Ponuka *ponuka) {
 	odstranKoniecRiadka(ponuka->kategoria);
 	odstranKoniecRiadka(ponuka->miesto);
@@ -68,7 +68,7 @@ void odstranKonceRiadkov(Ponuka *ponuka) {
 	odstranKoniecRiadka(ponuka->popis);
 }
 
-
+// prida ponuku do spajaneho zoznamu
 void pridajPonuku(SpajanyZoznam *ponuky, Ponuka ponuka) {
 	if (!ponuky) {
 		return;
@@ -90,7 +90,7 @@ void pridajPonuku(SpajanyZoznam *ponuky, Ponuka ponuka) {
 	}
 }
 
-
+// nacita ponuky zo suboru do zoznamu, ak zoznam existuje tak ho najprv uvolni
 void n(SpajanyZoznam *ponuky) {
 	FILE *subor;
 	if ((subor = fopen("reality.txt", "r")) == NULL) {
@@ -125,7 +125,7 @@ void n(SpajanyZoznam *ponuky) {
 	}
 }
 
-
+// vypise ponuku
 void vypisPonuku(Ponuka *ponuka) {
 	printf("kategoria ponuky: %s\n", ponuka->kategoria);
 	printf("miesto ponuky: %s\n", ponuka->miesto);
@@ -135,7 +135,7 @@ void vypisPonuku(Ponuka *ponuka) {
 	printf("popis: %s\n", ponuka->popis);
 }
 
-
+// vypisu vsetky ponuky v zozname
 void v(SpajanyZoznam *ponuky) {
 	int poradoveCislo = 1;
 	for (Uzol *uzol = ponuky->zaciatok; uzol; uzol = uzol->dalsi) {
@@ -144,7 +144,7 @@ void v(SpajanyZoznam *ponuky) {
 	}
 }
 
-
+// najde vhodne ponuky podla zadanej ceny od uzivatela
 void h(SpajanyZoznam *ponuky) {
 	int cenovyLimit;
 	scanf("%d", &cenovyLimit);
