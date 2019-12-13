@@ -10,3 +10,7 @@ Použité refaktorovacie techniky:
   3.  Oddelenie častí programu: separátne riadkovanie každej funkcie, zlepšenie čitateľnosti kódu 
   4.  Vizuálne úpravy: odstránenie medzier, riadkovanie, vizuálna úprava textu
  
+
+
+
+https://github.com/NickHrncirik/MIP
